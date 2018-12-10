@@ -1,44 +1,150 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React is hard. You are all doing great though. Take this information in pieces and try to think through what is happening.
 
-## Available Scripts
+I am first going to go over some key vocabulary for React
 
-In the project directory, you can run:
+## Components
 
-### `npm start`
+Components are the building blocks of React. Following a component based architecture for your application will allow you to reason with your code and what is happening. Whenever you start to write code that may or may not be relevant to your current component, think "Does the current component need to know about this information?" If you can answer yes, keep writing. If you answer no, then remove that information into a separate component.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There are two types of components; Function and Class.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Functional Component
 
-### `npm test`
+```jsx
+import React from 'react'
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const ComponentName = (props) => {
+	return <div>// JSX</div>
+}
+```
 
-### `npm run build`
+Functional components cannot have state or methods and do not have access to lifecycle methods.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Class Component
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```jsx
+import React from 'react'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+class ComponentName extends Component{
+  constructor(){
+    super()
+    this.state = {
+      // state
+    }
+  }
+  // Methods go here
+  MethodName = () => {
 
-### `npm run eject`
+  }
+  render(){
+    return (
+      // JSX
+    )
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## State
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+State is the intial data for your component. It is an object that can contain anything that is strictly relevant to that component
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Props
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Props are just things that can be passed onto components. Eventually you will need to pass some information from one parent component to a child component. You can do this with props.
 
-## Learn More
+### App.js
+```jsx
+import React, {Component} from 'react'
+import DisplayName from './Components/DisplayName'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+class App extends Component {
+	constructor() {
+		super()
+		this.state = {
+			name: 'Bryan'
+		}
+	}
+	render() {
+		return (
+			<div>
+				<DisplayName name={this.state.name} />
+			</div>
+		)
+	}
+}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+export default App
+```
+### DisplayName.js as functional component
+```jsx
+import React from 'react'
+
+const DisplayName = (props) => {
+  return (
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+  )
+}
+
+export default DisplayName
+```
+
+Above, why is it called `props.name`? Because we called it name when we passed it down on the `DisplayName` component in App.js
+
+### DisplayName.js as class component
+```jsx
+import React, {Component} from 'react'
+
+class DisplayName extends Component {
+	render() {
+		return (
+			<div>
+				<h1>{this.props.name}</h1>
+			</div>
+		)
+	}
+}
+
+export default App
+```
+
+Above, why is it called `this.props.name`? Because we called it name when we passed it down on the `DisplayName` component in App.js
+
+Remember, you will want to use functional components for presentation and class components for most things with some sort of logic.
+
+## Let's check out the code inside of this repo.
+
+If you've gotten this far, good work. React is tough. It took me a full 9 months of working with it to finally feel comfortable with it. Stick with it.
+
+## App.js
+- [ ] Let's start in App.js. Take a look at the file and read the notes and then come back.
+
+- [ ] Great, now go read the notes again. There is a lot of info to take in.
+
+
+## Btn.js
+Let's next look to the `Btn` component we created. We are looking at this one first to see how props are used and hw `Btn` follows a pattern that allows our code to be very flexible.
+
+- [ ] Read the notes in `Btn.js`
+
+## FriendList.js
+Here you are exposed to your first presentational parent component. All Friend list does is return a `ul` element and then the `Friend` component we created. Notice that there are a few props being passed down here as well
+
+- [ ] Read the notes in `FriendList.js`
+
+## Friend.js
+Here is where the magic happens, as they say. This is where most of our logic is happening.
+
+- [ ] Read the notes in `Friend.js`
+
+## Server Side
+Let's take a look at the server. There are notes in there, read them
+
+The server side code is where you will see the most plain javascript. Try to reason with this code. Why is it doing what it is doing and how is it doing it? If you can talk yourself through this code, you will be in good shape.
+
+- [ ] Read the notes in `server/index.js`
+
+- [ ] Read through the code in `server/index.js` and think about what it is doing.
+
+Please let me know if you have any questions

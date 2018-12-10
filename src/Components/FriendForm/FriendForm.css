@@ -1,0 +1,23 @@
+form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 250px;
+	margin: 0 auto;
+}
+
+form input {
+	margin: 0.5em 0;
+	height: 30px;
+	font-size: 1em;
+	border: 0;
+	border-bottom: 1px solid #a7a7a7;
+}
+
+form button {
+	height: 45px;
+	font-size: 1.2em;
+	background: #111;
+  color: #fff;
+  text-transform: uppercase;
+}

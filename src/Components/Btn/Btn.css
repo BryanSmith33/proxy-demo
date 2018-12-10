@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+.btn {
+	border-radius: 3px;
+	border: 0;
+	font-family: 'Raleway', sans-serif;
+}
+
+.data-btn {
+	height: 50px;
+	background: #111;
+	color: #fff;
+	font-size: 1.2em;
+	margin: 0.5em;
+	width: 250px;
+}
+
+.sm-btn {
+	width: calc(50% - 6px);
+	height: 30px;
+	margin: 3px;
+}
+
+.submit {
+	background: #41583e;
+	color: #fff;
+}
+
+.cancel {
+	background: #767ba2;
+	color: #fff;
+}
+
+.delete {
+	background: #d82222;
+	color: #fff;
+	height: 30px;
+	margin: 3px;
+	font-weight: bold;
+	width: 70px;
+}
